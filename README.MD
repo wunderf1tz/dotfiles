@@ -1,3 +1,3 @@
 .dotfiles
 
-Configuration files of used programs.
+Configuration files of used software.

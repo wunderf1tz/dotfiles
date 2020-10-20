@@ -1,0 +1,80 @@
+#
+## Software
+#
+# Git 
+alias 	gi='git init' \
+	ga='git add' \
+	gc='git commit -m' \
+	gp='git push' \
+	gd='git diff' \
+	gpu='git pull' \
+	gl='git log --oneline' \
+	gch='git checkout' 
+
+# Media
+alias 	btch='bluetoothctl connect 38:18:4C:96:74:03'  \
+	btca='bluetoothctl connect 0A:11:75:33:AF:3D' \
+	btcp='bluetoothctl connect 20:A6:0C:33:D4:72' \
+	btd='bluetoothctl devices' \
+	bth='bluetoothctl help' \
+	ts='bluetoothctl scan' \
+	btp='bluetoothctl pair' \
+	btcc='bluetoothctl connect' \
+	btdc='bluetoothctl disconnect'
+
+# Pandoc
+alias 	pandoc='sh ~/bin/doc2dw.sh'
+
+# Sway
+alias 	swdis='swaymsg -t get_outputs' \
+	swconfig='sudo nvim /home/simon/.config/sway/config'
+
+# Android
+alias adbp='adb push /home/simon/Android/* /storage/6537-6330/'
+#
+## System
+#
+# bash, vim
+alias 	short='sudo nvim /home/simon/bin/.bash_aliases' \
+	shortup='source ~/.bashrc' \
+	lt='ls --human-readable --size -1 -S --classify' \
+	la='ls -a' \
+	vi='sudo nvim'\
+	vim='nvim'
+		
+## gentoo 
+
+# Portage/Equery 
+alias	accept='sudo nvim /etc/portage/package.accept_keywords' \
+	packageuse='sudo nvim /etc/portage/package.use/' \
+	ema='sudo emerge -a' \
+	ems='sudo emerge -s' \
+	emp='sudo emerge -p' \
+	emd='sudo emerge --deselect' \
+	emdeprobe='sudo emerge --depclean -vp' \
+	emdepreal='sudo emerge --depclean -v' \
+	emsync='sudo emerge --sync' \
+	emup='sudo emerge -uDU --ask --keep-going --quiet --with-bdeps=y @world' \
+	conf='sudo dispatch-conf' \
+	backup='sudo mkstage4 -s 2020-09' 
+
+alias 	eqf='equery f' \
+	equ='equery u' \
+	eqh='equery h' \
+	eqa='equery a' \
+	eqb='equery b' \
+	eql='equery l' \
+	eqd='equery d' \
+	eqg='equery g' \
+	eqc='equery c' \
+	eqk='equery k' \
+	eqm='equery m' \
+	eqy='equery y' \
+	eqs='equery s' \
+	eqw='equery w'
+
+# Kernel
+alias 	cleankernel='sudo eclean-kernel -n 3 --ask' \
+	dmesgl='dmesg -w'
+
+

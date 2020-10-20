@@ -39,8 +39,8 @@ bindsym $mod+space exec rofi -show drun -show-icons -show-sidebar -icon-theme "P
 #
 output DP-1 resolution 3840x2160 position 0,0
 output eDP-1 resolution 1920x1080 position 3840,0
-output HDMI-A-1 resolution 1920x1080 position 5720,0
-output HDMI-A-2 resolution 1920x1080 position 5720,0
+output HDMI-A-1 resolution 1920x1080 position 5760,0
+output HDMI-A-2 resolution 1920x1080 position 5760,0
 
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
@@ -236,7 +236,7 @@ bindsym XF86AudioMute        exec pactl set-sink-mute @DEFAULT_SINK@ toggle
     bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+    bindsym $mod+Shift+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
@@ -266,16 +266,16 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym $left resize shrink width 20px
+    bindsym $down resize grow height 20px
+    bindsym $up resize shrink height 20px
+    bindsym $right resize grow width 20px
 
     # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    bindsym Left resize shrink width 20px
+    bindsym Down resize grow height 20px
+    bindsym Up resize shrink height 20px
+    bindsym Right resize grow width 20px
 
     # Return to default mode
     bindsym Return mode "default"
@@ -301,8 +301,8 @@ include /etc/sway/config.d/*
 font Cozette_Vector 10.5
 
 exec_always swaybar
-exec mako
 exec pulseaudio --daemonize
+exec mako 
 exec_always $HOME/redshift/root/bin/gammastep
 #
 # Colours
@@ -319,9 +319,14 @@ client.urgent #434c5e #434c5e #eceff4 #434c5e #434c5e
 
 bindsym Print exec grim -g "$(slurp)" -t png 
 bindsym $mod+n exec --no-startup-id alacritty -t nm_tui_win -e "nmtui"
+bindsym $mod+Shift+d exec nautilus 
+bindsym $mod+f exec firefox-wayland
 for_window [title="nm_tui_win"] floating enable
 for_window [title="(Fiji Is Just) ImageJ"] floating enable
 for_window [class="fiji-Main"] floating enable
+for_window [app_id="firefox-wayland"] floating enable
+for_window [app_id="org.gnome.Nautilus"] floating enable
+
 
 #
 # Libunput gestures
@@ -329,3 +334,7 @@ for_window [class="fiji-Main"] floating enable
 input 2:7:SynPS/2_Synaptics_TouchPad tap enabled
 input 2:7:SynPS/2_Synaptics_TouchPad tap_button_map lrm
 
+#
+# Mako
+#
+exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus

@@ -34,9 +34,15 @@ bindsym $mod+space exec rofi -show drun -show-icons -show-sidebar -icon-theme "P
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
-# Example configuration:
+# 
 #
+
 #
+# Settings for vertical alignment of external monitor
+#
+#output DP-1 resolution 2160x3840 transform 270 position 0,0
+#output eDP-1 resolution 1920x1080 position 2160,0
+
 output DP-1 resolution 3840x2160 position 0,0
 output eDP-1 resolution 1920x1080 position 3840,0
 output HDMI-A-1 resolution 1920x1080 position 5760,0

@@ -19,8 +19,8 @@ set $up k
 set $right l
 set $mon1 eDP-1
 set $mon2 DP-1 
-set $mon3 HDMI-A-2
-set $mon4 HDMI-A-1
+set $mon3 HDMI-A-1
+set $mon4 HDMI-A-2
 
 # Your preferred terminal emulator
 set $term alacritty
@@ -105,6 +105,10 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -2%
 bindsym XF86AudioMute        exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
+# Spotify control
+#XF86AudioNext
+#XF86AudioPrev
+
 #set $sink pactl list short sinks | grep RUNNING | cut -f1
 #bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink +10%
 #bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -10%
@@ -112,7 +116,12 @@ bindsym XF86AudioMute        exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 #bindsym XF86AudioRaiseVolume exec --no-startup-id 'pactl set-sink-volume 1 +5%' #increase sound volume
 #bindsym XF86AudioLowerVolume exec --no-startup-id 'pamixer set-sink-volume 1 --decrease 5'
 # Media player controls
-#bindsym XF86AudioPlay exec --no-startup-id pactl play-pause
+
+bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Play
+bindsym XF86AudioPause exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Pause
+bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+
 
 #
 # Basics:
@@ -191,6 +200,17 @@ bindsym XF86AudioMute        exec pactl set-sink-mute @DEFAULT_SINK@ toggle
     workspace 9b output $mon2
     workspace 0b output $mon2
 
+    workspace 1c output $mon3
+    workspace 2c output $mon3
+    workspace 3c output $mon3
+    workspace 4c output $mon3
+    workspace 5c output $mon3
+    workspace 6c output $mon3
+    workspace 7c output $mon3
+    workspace 8c output $mon3
+    workspace 9c output $mon3
+    workspace 0c output $mon3
+
     # Changing workspaces
     bindsym $mod+1 workspace 1a
     bindsym $mod+2 workspace 2a
@@ -214,6 +234,9 @@ bindsym XF86AudioMute        exec pactl set-sink-mute @DEFAULT_SINK@ toggle
     bindsym $mod+Ctrl+9 workspace 9b
     bindsym $mod+Ctrl+0 workspace 0b
 
+    bindsym $mod+Ctrl+period workspace 1c 
+
+
     # Moving containers to workspaces
     bindsym $mod+Shift+1 move container to workspace 1a
     bindsym $mod+Shift+2 move container to workspace 2a
@@ -236,6 +259,9 @@ bindsym XF86AudioMute        exec pactl set-sink-mute @DEFAULT_SINK@ toggle
     bindsym $mod+Shift+Ctrl+8 move container to workspace 8b
     bindsym $mod+Shift+Ctrl+9 move container to workspace 9b
     bindsym $mod+Shift+Ctrl+0 move container to workspace 0b
+
+    bindsym $mod+Shift+Ctrl+period move container to workspace 1c  
+
 #
 # Layout stuff:
 #
@@ -328,11 +354,6 @@ client.focused_inactive #3b4252 #3b4252 #eceff4 #3b4252 #3b4252
 client.unfocused #3b4252 #3b4252 #eceff4 #3b4252 #3b4252
 client.urgent #434c5e #434c5e #eceff4 #434c5e #434c5e
 
-#
-# Take Screenshot of selected area and save it to home folder as png with time stamp
-#
-
-bindsym Print exec grim -g "$(slurp)" -t png 
 bindsym $mod+n exec --no-startup-id alacritty -t nm_tui_win -e "nmtui"
 bindsym $mod+Shift+d exec nautilus 
 bindsym $mod+f exec firefox-wayland
@@ -347,6 +368,7 @@ for_window [title="(Fiji Is Just) ImageJ"] floating enable
 for_window [class="fiji-Main"] floating enable
 for_window [app_id="firefox-wayland"] floating enable
 for_window [app_id="org.gnome.Nautilus"] floating enable
+for_window [app_id="org.pwmt.zathura"] floating enable
 
 
 #
@@ -358,4 +380,4 @@ input 2:7:SynPS/2_Synaptics_TouchPad tap_button_map lrm
 #
 # Mako
 #
-exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
+#exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus

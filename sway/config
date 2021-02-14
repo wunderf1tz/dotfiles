@@ -5,7 +5,7 @@
 # Read `man 5 sway` for a complete reference.
 gaps inner 10
 gaps outer 3
-default_border pixel 5
+default_border pixel 8
 hide_edge_borders none
 smart_gaps on
 ### Variables
@@ -344,6 +344,7 @@ font Cozette_Vector 10.5
 exec_always swaybar
 exec pulseaudio --daemonize
 exec mako 
+# exec wal --theme nord
 exec_always $HOME/redshift/root/bin/gammastep
 #
 # Colours

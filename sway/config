@@ -3,9 +3,9 @@
 # Copy this to ~/.config/sway/config and edit it to your liking.
 #
 # Read `man 5 sway` for a complete reference.
-gaps inner 10
-gaps outer 3
-default_border pixel 8
+gaps inner 8
+gaps outer 0
+default_border none
 hide_edge_borders none
 smart_gaps on
 ### Variables
@@ -28,7 +28,7 @@ set $term alacritty
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
-bindsym $mod+space exec rofi -show drun -show-icons -show-sidebar -icon-theme "Papirus" -font "Cozette_Vector 13"
+bindsym $mod+space exec rofi -show drun -display-drun "" -font "Cozette_Vector 10" 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
@@ -49,6 +49,7 @@ bindsym $mod+space exec rofi -show drun -show-icons -show-sidebar -icon-theme "P
 #output HDMI-A-1 resolution 1920x1080 position 5760,0
 #output HDMI-A-2 resolution 1920x1080 position 5760,0
 
+output * bg #4c566a solid_color
 
 # External monitor on right side
 output DP-1 resolution 3840x2160 position 1920,0
@@ -234,7 +235,7 @@ bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2
     bindsym $mod+Ctrl+9 workspace 9b
     bindsym $mod+Ctrl+0 workspace 0b
 
-    bindsym $mod+Ctrl+period workspace 1c 
+    bindsym $mod+period workspace 1c 
 
 
     # Moving containers to workspaces
@@ -260,7 +261,7 @@ bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2
     bindsym $mod+Shift+Ctrl+9 move container to workspace 9b
     bindsym $mod+Shift+Ctrl+0 move container to workspace 0b
 
-    bindsym $mod+Shift+Ctrl+period move container to workspace 1c  
+    bindsym $mod+Shift+period move container to workspace 1c  
 
 #
 # Layout stuff:
@@ -346,6 +347,9 @@ exec pulseaudio --daemonize
 exec mako 
 # exec wal --theme nord
 exec_always $HOME/redshift/root/bin/gammastep
+exec light -S 100
+# exec_always gapplication launch org.gnome.Shell.Extensions.GSConnect 
+#
 #
 # Colours
 #
@@ -355,10 +359,11 @@ client.focused_inactive #3b4252 #3b4252 #eceff4 #3b4252 #3b4252
 client.unfocused #3b4252 #3b4252 #eceff4 #3b4252 #3b4252
 client.urgent #434c5e #434c5e #eceff4 #434c5e #434c5e
 
-bindsym Print exec grim -g "$(slurp)" -t png
+#bindsym Print exec grim -g "$(slurp)" -t png
+bindsym Print exec grim -g "$(slurp)" -t png ~/$(date +%Y-%m-%d_%H-%m-%s).png
 bindsym $mod+n exec --no-startup-id alacritty -t nm_tui_win -e "nmtui"
-bindsym $mod+Shift+d exec nautilus 
-bindsym $mod+f exec firefox-wayland
+bindsym $mod+Shift+d exec ranger
+bindsym $mod+f exec firefox
 
 #
 ## Start apps in Floating mode
@@ -368,10 +373,10 @@ bindsym $mod+f exec firefox-wayland
 for_window [title="nm_tui_win"] floating enable
 for_window [title="(Fiji Is Just) ImageJ"] floating enable
 for_window [class="fiji-Main"] floating enable
-for_window [app_id="firefox-wayland"] floating enable
+for_window [app_id="firefox"] floating enable
 for_window [app_id="org.gnome.Nautilus"] floating enable
 for_window [app_id="org.pwmt.zathura"] floating enable
-
+for_window [app_id="firefox"] resize set 1920 1080 
 
 #
 # Libunput gestures
@@ -381,5 +386,6 @@ input 2:7:SynPS/2_Synaptics_TouchPad tap_button_map lrm
 
 #
 # Mako
-#
+
 #exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
+input * xkb_numlock enable

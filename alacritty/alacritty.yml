@@ -35,7 +35,7 @@ colors:
     matches:
       foreground: '#2e3440'
       background: '#88c0d0'
-    bar:
+    colors.footer_bar:
       background: '#434c5e'
       foreground: '#d8dee9'
   normal:

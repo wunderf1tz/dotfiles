@@ -386,6 +386,6 @@ input 2:7:SynPS/2_Synaptics_TouchPad tap_button_map lrm
 
 #
 # Mako
-
+exec gentoo-pipewire-launcher 
 #exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
 input * xkb_numlock enable
